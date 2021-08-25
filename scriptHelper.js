@@ -3,22 +3,19 @@ require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
-   /*
+//<div id="missionTarget" data-testid="missionTarget">
+let divID = document.getElementById("missionTarget");
+divID.innerHTML = `
                 <h2>Mission Destination</h2>
                 <ol>
-                    <li>Name: </li>
-                    <li>Diameter: </li>
-                    <li>Star: ${star}</li>
-                    <li>Distance from Earth: </li>
-                    <li>Number of Moons: </li>
+                    <li>Name: ${json[missionTarget].name} </li>
+                    <li>Diameter: ${json[missionTarget].diameter}  </li>
+                    <li>Star: ${json[missionTarget].start} }</li>
+                    <li>Distance from Earth: ${json[missionTarget].distance}  </li>
+                    <li>Number of Moons: ${json[missionTarget].moons}  </li>
                 </ol>
-                <img src="">
-   */
-
-
-
-
-}
+                <img src="${json[missionTarget].image}"></img>;
+`} //I only added the ticks because of 26.3. I don't really understand why that works
 
 //takes in a string
 function validateInput(testInput) {
