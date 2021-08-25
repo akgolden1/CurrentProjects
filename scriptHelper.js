@@ -41,14 +41,14 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     // let readyStatus;
     let pilotName = document.querySelector("input[name=pilotName]");
     let copilotName = document.querySelector("input[name=copilotName]");
-    let fuelLevel = document.querySelector("input[name=fuelLevel]");
+    let fuelLevelAmt = document.querySelector("input[name=fuelLevel]");
     let cargoMass = document.querySelector("input[name=cargoMass]");
    
    
 //     //check for empty fields and prevent the form from loading if there are any
 //try removing the .value after pilotName, copilotName, etc.
 
-if (validateInput (pilotName)||validateInput (copilotName)|| validateInput(fuelLevel) ||
+if (validateInput (pilotName)||validateInput (copilotName)|| validateInput(fuelLevelAmt) ||
 validateInput (cargoLevel) === "Empty") {
     alert ("All fields required");
     event.preventDefault(); //ignore line through event
@@ -63,11 +63,11 @@ else if (validateInput (copilotName) === "This is a number") {
     //Do something else
 }
 
-else if (validateInput (fuelLevel) === "This is not a number"){
+else if (validateInput (fuelLevelAmt) === "This is not a number"){
     alert ("This is not a number");
     //do something else
     }
-else if (fuelLevel.value < 10000){
+else if (fuelLevelAmt.value < 10000){
 
        let fuelMessage = document.getElementById ("faultyItems");//looking for the faultyItems element
        fuelMessage.innerHTML += "is not enough fuel"
@@ -108,11 +108,10 @@ else if (fuelLevel.value < 10000){
         //else {
             //document.getElementByID("faultyItems").style.displays= "block";//show the div
    //     }
-        }
+ }
 //if everything is perfect:
 
-else if (fuelLevel.value >= 10000 && cargoMass.value <= 10000  )
- {
+    else if (fuelLevelAmt.value >= 10000 && cargoMass.value <= 10000  ){
 
     document.getElementById("faultyItems").style.visibility = "visible";
     document.getElementById("launchStatus").innerHTML = "Shuttle is ready for launch";
@@ -121,31 +120,23 @@ else if (fuelLevel.value >= 10000 && cargoMass.value <= 10000  )
 }
 
 
-
-//      readyStatus = "Empty";
-
- 
-
-
-
-
 async function myFetch() {
     let planetsReturned;
 //I'm not sure this goes here:
-fetch ("https://handlers.education.launchcode.org/static/planets.json").then(function(response)){
+fetch ("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
 
-}
+
 //then what do I do with this?
     planetsReturned = await fetch().then( function(response) {//this was existing code
         });
 
     return planetsReturned;//existing code
-}
+    });
 
-
+};
 
 function pickPlanet(planets) {
-//takes in one argument, a list of planets and returns one planet from the list wiath a 
+//takes in one argument, a list of planets and returns one planet from the list with a 
 //randomly-selected index
 let returnedIndex=0;
 let planets =
@@ -203,10 +194,11 @@ let planets =
 returnedIndex = planets[Math.random()*6];//take my array[Math.random()*number of objects in my array]
 return returnedIndex;
 
-}
+};
 
 module.exports.addDestinationInfo = addDestinationInfo;
 module.exports.validateInput = validateInput;
 module.exports.formSubmission = formSubmission;
 module.exports.pickPlanet = pickPlanet; 
 module.exports.myFetch = myFetch;
+}

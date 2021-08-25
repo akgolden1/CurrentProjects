@@ -3,7 +3,7 @@
 window.addEventListener("load", function() {
 
    let listedPlanets;
-   // Set listedPlanetsResponse equal to the value returned by calling myFetch()
+   // Set listedPlanetsResponse equal to the value returned by calling myFetch()?
    let listedPlanetsResponse;
       listedPlanetsResponse.then(function (result) {
         listedPlanets = result;
@@ -18,11 +18,11 @@ window.addEventListener("load", function() {
       
       });
 //do I need to call every function here?
-formSubmission();
-addDestinationInfo();
-validateInput();
-pickPlanet(); 
-myFetch();
+// formSubmission();
+// addDestinationInfo();
+// validateInput();
+// pickPlanet(); 
+// myFetch();
 // function someFunction{
 // this is where the purpose of the DOM is to take elemeents on the HTML doc and make them objects
 // that have properties I can work with.
