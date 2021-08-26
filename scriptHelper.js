@@ -8,19 +8,21 @@
 require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-   // Here is the HTML formatting for our mission target div.
-   /*
-                <h2>Mission Destination</h2>
-                <ol>
-                    <li>Name: </li>
-                    <li>Diameter: </li>
-                    <li>Star: ${star}</li>
-                    <li>Distance from Earth: </li>
-                    <li>Number of Moons: </li>
-                </ol>
-                <img src="">
-   */
-}
+    // Here is the HTML formatting for our mission target div.
+ //<div id="missionTarget" data-testid="missionTarget">
+ let divID = document.getElementById("missionTarget");
+ divID.innerHTML = `
+                 <h2>Mission Destination</h2>
+                 <ol>
+                     <li>Name: ${json[missionTarget].name} </li>
+                     <li>Diameter: ${json[missionTarget].diameter}  </li>
+                     <li>Star: ${json[missionTarget].start} }</li>
+                     <li>Distance from Earth: ${json[missionTarget].distance}  </li>
+                     <li>Number of Moons: ${json[missionTarget].moons}  </li>
+                 </ol>
+                 <img src="${json[missionTarget].image}"></img>;
+ `} // added the ticks because of 26.3.  
+
 
   let pilotNameInput = document.querySelector("input[name=pilotName]"); //we need the usernameInput because we're returing a reference
   let copilotNameInput = document.querySelector("input[name=copilotName]");
@@ -43,7 +45,7 @@ function validateInput(testInput) {
    //form info from index.html file: name ="pilotName",name= "copilotName",name="fuelLevel", name="cargoMass"
  //this is taking a string. That string testInput is the input the user is putting into the form
  //use console.log until this is connected to script.js
- if (pilotNameInput.value === "" || copilotNameInput.value ==="" ||fuelLevelInput.value ===""||cargoMassInput.value ===""){
+ if (pilotNameInput.value === "" || copilotNameInput.value === "" ||fuelLevelInput.value ===""||cargoMassInput.value ===""){
     return "Empty";
     }
 
@@ -51,7 +53,7 @@ if (!isNaN(pilotNameInput.value) ||!isNaN(copilotNameInput.value) ){
     return "Is a number";//we don't want it to be a number
     }
 else if (isNaN(fuelLevelInput.value)||isNaN(cargoMassInput.value)){
-    return ("Not a Number");
+    return "Not a Number";
     }
 };
 
@@ -83,7 +85,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             showLaunchStatus.style.color = 'red';
          }
 
-
          if((fuelLevelInput.value >= 10000) && (cargoMassInput.value <= 10000)) { // If the fuelLevel is equal to or above 10,000 AND cargoMass is equal to or below 10,000, execute this code 
             showFaultyItems.style.visibility = 'visible';
             showLaunchStatus.innerHTML = `Shuttle is ready for launch`;
@@ -93,20 +94,19 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
          }
 
 
-
-
-
-async function myFetch() {
-    let planetsReturned;
-
-    planetsReturned = await fetch().then( function(response) {
-        });
-
-    return planetsReturned;
+async function myFetch() {//I guess we're waiting for myFetch to finish?
+    let planetsReturned=0;//returns the promise?
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+     console.log(response.json);
+         return (response.json());
+     });
 }
 
 function pickPlanet(planets) {
-}
+//takes in one argument, a list of planets and returns one planet from the list with a randomly-selected index
+    let returnedIndex = planets[Math.random()*6];//take my array[Math.random()*number of objects in my array]
+    return returnedIndex;
+    };
 
 module.exports.addDestinationInfo = addDestinationInfo;
 module.exports.validateInput = validateInput;
