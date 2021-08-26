@@ -51,7 +51,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 if (validateInput (pilotName)||validateInput (copilotName)|| validateInput(fuelLevelAmt) ||
 validateInput (cargoLevel) === "Empty") {
     alert ("All fields required");
-    event.preventDefault(); //ignore line through event
+   
 }
 else if (validateInput(pilotName) === "This is a number"){
 alert ("This is a number");
@@ -115,81 +115,29 @@ else if (fuelLevelAmt.value < 10000){
 
     document.getElementById("faultyItems").style.visibility = "visible";
     document.getElementById("launchStatus").innerHTML = "Shuttle is ready for launch";
-    document.getElementById("launchStatus").style.color = "green";//css change?          
+    document.getElementById("launchStatus").style.color = "green";//css change?  
+    //also something like: 
+   console.log (pilotName + "Is ready for launch");
+
    
 }
 
 
-async function myFetch() {
-    let planetsReturned;
-//I'm not sure this goes here:
-fetch ("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
+async function myFetch() {//I guess we're waiting for myFetch to finish?
+    let planetsReturned=0;//returns the promise?
+    //planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+//console.log(response.json);
+    //return (response.json());
+//});
 
-
-//then what do I do with this?
-    planetsReturned = await fetch().then( function(response) {//this was existing code
-        });
-
+//console.log (planetsReturned);
     return planetsReturned;//existing code
-    });
-
 };
 
 function pickPlanet(planets) {
 //takes in one argument, a list of planets and returns one planet from the list with a 
 //randomly-selected index
 let returnedIndex=0;
-let planets =
-[
-    {
-       "name": "Tatooine",
-       "diameter": "10465 km",
-       "star": "Tatoo I & Tatoo II",
-       "distance": "43000 light years from galactic core",
-       "image": "https://www.nasa.gov/sites/default/files/images/587837main_Kepler16_transit_art2_full.jpg",
-       "moons": 3
-    },
-    {
-        "name": "Pern",
-        "diameter": "measurement is under dispute",
-        "star": "Alpha Sagittarius (a.k.a. Rukbat)",
-        "distance": "Varies - find a library",
-        "image": "https://www.nasa.gov/centers/langley/images/content/698148main_Brains_904_2.jpg",
-        "moons": 2
-    },
-    {
-        "name": "Saturn/Titan",
-        "diameter": "5149.5 km",
-        "star": "Sol",
-        "distance": "1.4 billion km from Earth",
-        "image": "https://solarsystem.nasa.gov/system/resources/detail_files/16278_PIA20016.jpg",
-        "moons": 0
-    },
-    {
-        "name": "Mars",
-        "diameter": "6779 km",
-        "star": "Sol",
-        "distance": "225 million km from Earth",
-        "image": "https://mars.nasa.gov/system/resources/detail_files/7808_global-color-views-mars-PIA00407-full2.jpg",
-        "moons": 2
-    },
-    {
-        "name": "K2-18b",
-        "diameter": "34500 km",
-        "star": "K2-18",
-        "distance": "110 light years from Earth",
-        "image": "https://www.nasa.gov/sites/default/files/thumbnails/image/heic1916a.jpg",
-        "moons": "unknown"
-    },
-    {
-        "name": "Jupiter/Europa",
-        "diameter": "3,121.6 km",
-        "star": "Sol",
-        "distance": "628.3 million km from Earth",
-        "image": "https://apod.nasa.gov/apod/image/1609/Europa_Galileo_960.jpg",
-        "moons": 0
-    }
-];
 
 returnedIndex = planets[Math.random()*6];//take my array[Math.random()*number of objects in my array]
 return returnedIndex;
