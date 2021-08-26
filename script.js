@@ -3,10 +3,14 @@ window.addEventListener("load", function() {
 
    let listedPlanets;
    let listedPlanetsResponse = myFetch();
-      listedPlanetsResponse.then(function (result) {
-        listedPlanets = result;
+   listedPlanetsResponse.then(function (result) {
+      listedPlanets = result;
+      console.log(listedPlanets);
+         }).then(function () {
          console.log(listedPlanets);
-          }).then(function () {
-            console.log(listedPlanets);
-         });
       });
+
+      let pilotName = document.querySelector("input[name=pilotName]");
+      console.log (pilotName);
+      
+});
