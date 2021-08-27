@@ -22,7 +22,7 @@ formSubmission();  //but how do I get it the return value?? I think I do this he
 
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-   let listedPlanetsResponse = myFetch ();
+   let listedPlanetsResponse = myFetch();
    listedPlanetsResponse.then(function (result) {
        listedPlanets = result;
        console.log(listedPlanets);

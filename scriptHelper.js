@@ -14,13 +14,13 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
  divID.innerHTML = `
                  <h2>Mission Destination</h2>
                  <ol>
-                     <li>Name: ${json[missionTarget].name} </li>
-                     <li>Diameter: ${json[missionTarget].diameter}  </li>
-                     <li>Star: ${json[missionTarget].start} }</li>
-                     <li>Distance from Earth: ${json[missionTarget].distance}  </li>
-                     <li>Number of Moons: ${json[missionTarget].moons}  </li>
+                     <li>Name: ${name} </li>
+                     <li>Diameter: ${diameter}  </li>
+                     <li>Star: ${star} }</li>
+                     <li>Distance from Earth: ${distance}  </li>
+                     <li>Number of Moons: ${moons}  </li>
                  </ol>
-                 <img src="${json[missionTarget].image}"></img>;
+                 <img src="${imageUrl}"></img>;
  `} // added the ticks because of 26.3.  
 
 
@@ -95,17 +95,21 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 
 async function myFetch() {//I guess we're waiting for myFetch to finish?
-    let planetsReturned=0;//returns the promise?
+    //returns the promise?
+    let planetsReturned = 0;
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
      console.log(response.json);
-         return (response.json());
+         return response.json();//the json data is attached to myFetch. This will some back later.
      });
+
+      return planetsReturned;
 }
 
-function pickPlanet(planets) {
+
+function pickPlanet(planets) {//this just produces a number, that I will use later to pick a planet
 //takes in one argument, a list of planets and returns one planet from the list with a randomly-selected index
-    let returnedIndex = planets[Math.random()*6];//take my array[Math.random()*number of objects in my array]
-    return returnedIndex;
+    let returnedIndex = Math.floor(Math.random()* planets.length);//take my array[Math.random()*number of objects in my array]
+    return planets[returnedIndex];
     };
 
 module.exports.addDestinationInfo = addDestinationInfo;
