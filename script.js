@@ -4,10 +4,10 @@
 window.addEventListener("load", function() {
   
    //let myForm = document.getElementById("testForm");
-let form = document.addEventListener("formSubmit", function (event){;
+let form = document.querySelector("form");
     form.addEventListener("submit", function(event){
         alert("submit clicked");
-    });
+        
     });
 
     //let pilotName = document.getElementById('pilotName.value');
@@ -26,7 +26,7 @@ let form = document.addEventListener("formSubmit", function (event){;
 
     let listedPlanets;
     // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-    let listedPlanetsResponse;
+    let listedPlanetsResponse = myFetch();
     listedPlanetsResponse.then(function (result) {
         listedPlanets = result;
         console.log(listedPlanets);
@@ -34,6 +34,9 @@ let form = document.addEventListener("formSubmit", function (event){;
         console.log(listedPlanets);
         // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
 
- formSubmission(document, listFaultyItems, pilotName, copilotName, fuelLevel, cargoMass);//calling it here is working
+ formSubmission(document, listFaultyItems, pilotName.value, copilotName, fuelLevel, cargoMass);//calling it here is working
     });
  });
+
+
+ 
