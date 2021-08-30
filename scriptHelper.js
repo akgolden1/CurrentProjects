@@ -36,7 +36,7 @@ else {
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
 
-        //let pilotName = document.getElementById('pilotName.value');
+        // let pilotName = document.getElementById('pilotName.value');
         // let pilotName=document.querySelector("input[name=pilotName]");
         // let copilotName = document.querySelector("input[name=copilotName]");
         // let fuelLevelAmt = document.querySelector("input[name=fuelLevel]");
