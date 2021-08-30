@@ -78,7 +78,7 @@ if(Number(cargoLevel) > 10000) {
     document.getElementById("launchStatus").style.color = 'red';
    // document.getElementById("fuelStatus").innerHTML = `Fuel level is high enough for launch`;
 } else {
-    document.getElementById("cargoLevel").innerHTML = `Cargo mass is low enough for launch`
+    document.getElementById("cargoStatus").innerHTML = `Cargo mass is low enough for launch`
 }
 
        
