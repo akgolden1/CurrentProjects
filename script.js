@@ -45,12 +45,12 @@ let pilotName = document.querySelector("input[name=pilotName]");
 let pilot=pilotName.value;
 let copilotName = document.querySelector("input[name=copilotName]");
 let copilot = copilotName.value;
-let fuelLevel = document.querySelector("input[name=fuelLevel]");
-let fuel = fuelLevel.value;
+let inputFuelLevel = document.querySelector("input[name=fuelLevel]");
+let fuelLevel = inputFuelLevel.value;
 let cargoMass = document.querySelector("input[name=cargoMass]");
 let cargoLevel=cargoMass.value;
-let pilotStatus = document.getElementById('pilotStatus');
-let copilotStatus = document.getElementById('copilotStatus');
+// let pilotStatus = document.getElementById('pilotStatus');
+// let copilotStatus = document.getElementById('copilotStatus');
 let fuelStatus = document.getElementById('fuelStatus');
 let cargoStatus = document.getElementById ('cargoStatus');
 

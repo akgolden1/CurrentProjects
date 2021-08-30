@@ -36,20 +36,8 @@ else {
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
-        // let pilotName = document.getElementById('pilotName.value');
-        // let pilotName=document.querySelector("input[name=pilotName]");
-        // let copilotName = document.querySelector("input[name=copilotName]");
-        // let fuelLevelAmt = document.querySelector("input[name=fuelLevel]");
-        // let cargoMass = document.querySelector("input[name=cargoMass]");
-        // let launchStatus = document.getElementById('launchStatus');
-        // let listFaultyItems = document.getElementById('faultyItems');//just to be difficult
-        
-        // let pilotStatus = document.getElementById('pilotStatus');
-        // let copilotStatus = document.getElementById('copilotStatus');
-        // let fuelStatus = document.getElementById('fuelStatus');
-        // let cargoStatus = document.getElementById ('cargoStatus');
-    
-
+    let pilotStatus = document.getElementById('pilotStatus');
+    let copilotStatus = document.getElementById('copilotStatus');
 
   //document variables defined in script.js
   //next section just validating input
@@ -57,46 +45,55 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   if (validateInput(pilot)==="Empty" || validateInput(copilot)==="Empty" || validateInput(fuelLevel)==="Empty" ||
   validateInput (cargoLevel)==="Empty"){
       alert("All fields are required!");
-  }
+}
 
    else if (validateInput(pilot)==="Is a number" || validateInput(copilot)==="Is a number" || 
    validateInput(fuelLevel)==="Not a number" || validateInput(cargoLevel)==="Not a number"){ 
    alert ("Make sure to enter valid information for each field!");
      }
-    //    else { //update final table
-    //        pilotStatus.innerHTML = `Pilot ${pilot} is ready`;
-    //        copilotStatus.innerHTML = `Co-pilot ${copilot} is ready`;
-    //    }//this may not be enough
- 
-//check fuel and cargo
-if (Number(cargoLevel) > 10000){  // Is the cargo mass above 10,000?
-           faultyItems.style.visibility ="visible";
-           document.getElementById("cargoStatus").innerHTML = `Cargo mass too heavy for the shuttle to take off!`; 
-           document.getElementById("launchStatus").innerHTML = `Shuttle not ready for launch`;
-           document.getElementById("launchStatus").style.color = 'red';
-}
-else {cargolevel = true; //will this work?
+
+  else {
+   pilotStatus.innerHTML = "Pilot " + pilot + " Ready";//working
+   copilotStatus.innerHTML = "Co-pilot " + copilot + " Ready";//working
+  
+  } 
+
+if (Number(fuelLevel) < 10000){
+    console.log ("the fuel is low");
+    faultyItems.style.visibility ="visible";
+    document.getElementById("cargoStatus").innerHTML = `Cargo fine`; 
+    document.getElementById("launchStatus").innerHTML = `Shuttle not ready for launch`;
+    document.getElementById("launchStatus").style.color = 'red';
+    document.getElementById("fuelStatus").innerHTML = `fuel not enough`;
 }
 
-if (fuelLevel < 10000) {
-
-    list.style.visibility = 'visible';
-           fuelStatus.innerHTML = `Shuttle ready for launch`;
-           launchStatus.innerHTML = `fuel too low for launch`;
-           launchStatus.style.color = 'red';
-        }
-else {fuelLevel = true;
+else if(Number(cargoLevel) >= 10000){//this is working
+    
+    faultyItems.style.visibility ="visible";
+    document.getElementById("cargoStatus").innerHTML = `Cargo is too heavy`; 
+    document.getElementById("launchStatus").innerHTML = `Shuttle not ready for launch`;
+    document.getElementById("launchStatus").style.color = 'red';
+    document.getElementById("fuelStatus").innerHTML = `Fuel is fine`;
 }
+
        
-if((fuelLevel >= 10000) && (cargoLevel <= 10000)) { // If the fuelLevel is equal to or above 10,000 AND cargoMass is equal to or below 10,000, execute this code 
-    faultyItems.visibility = 'visible';
-           launchStatus.innerHTML = `Shuttle is ready for launch`;
-           launchStatus.style.color = 'green';
-           fuelStatus.innerHTML = `Fuel level high enough for launch`;
-           cargoStatus.innerHTML = `Cargo mass low enough for launch`;
+else if ((fuelLevel >= 10000) && (cargoLevel <= 10000)) { // If the fuelLevel is equal to or above 10,000 AND cargoMass is equal to or below 10,000, execute this code 
+
+
+    faultyItems.style.visibility ="visible";
+    document.getElementById("cargoStatus").innerHTML = `Cargo mass low enough for launch`; 
+    document.getElementById("launchStatus").innerHTML = `Shuttle is ready for launch`;
+    document.getElementById("launchStatus").style.color = 'green';
+    document.getElementById("fuelStatus").innerHTML = `Fuel level high enough for launch`;
         }
+
+else {
+    console.log ("at the end");//just adding here in case.
+}
 
 };
+
+
 
         async function myFetch() {
             let planetsReturned;
