@@ -23,7 +23,7 @@ function validateInput(testInput) {
 if (testInput === ""){
     return "Empty";
 }
-else if (isNan(testInput)){
+else if (isNaN(testInput)){
     return "This is a not number";
 }
 else {
@@ -49,47 +49,54 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         // let fuelStatus = document.getElementById('fuelStatus');
         // let cargoStatus = document.getElementById ('cargoStatus');
     
-  console.log (pilotName.value);
-   alert ("I'm in form submission");
-   alert (pilotName);
+
 
   //document variables defined in script.js
-  
-   if (validateInput(pilot)==="Is a number" || validateInput(copilot)==="Is a number"){
+  //next section just validating input
+    
+  if (validateInput(pilot)==="Empty" || validateInput(copilot)==="Empty" || validateInput(fuelLevel)==="Empty" ||
+  validateInput (cargoLevel)==="Empty"){
+      alert("All fields are required!");
+  }
+
+   else if (validateInput(pilot)==="Is a number" || validateInput(copilot)==="Is a number" || 
+   validateInput(fuelLevel)==="Not a number" || validateInput(cargoLevel)==="Not a number"){ 
    alert ("Make sure to enter valid information for each field!");
-       }
-       else { //update final table
-           pilotStatus.innerHTML = `Pilot ${pilot} is ready`;
-           copilotStatus.innerHTML = `Co-pilot ${copilot} is ready`;
-       }//this may not be enough
-   }
-   if (validateInput(fuel)==="Not a number" || validateInput(cargoLevel)==="Not a number")
-       {
-           alert ("Make sure to enter valid information for each field!");
+     }
+    //    else { //update final table
+    //        pilotStatus.innerHTML = `Pilot ${pilot} is ready`;
+    //        copilotStatus.innerHTML = `Co-pilot ${copilot} is ready`;
+    //    }//this may not be enough
+ 
+//check fuel and cargo
+if (Number(cargoLevel) > 10000){  // Is the cargo mass above 10,000?
+           faultyItems.style.visibility ="visible";
+           document.getElementById("cargoStatus").innerHTML = `Cargo mass too heavy for the shuttle to take off!`; 
+           document.getElementById("launchStatus").innerHTML = `Shuttle not ready for launch`;
+           document.getElementById("launchStatus").style.color = 'red';
+}
+else {cargolevel = true; //will this work?
+}
 
-       }else if ((validateInput(cargoLevel) > 10000)){  // Is the cargo mass above 10,000?
-           list.style.visibility = 'visible';
-           cargoStatus.innerHTML = `Cargo mass too heavy for the shuttle to take off!`; 
-           launchStatus.innerHTML = `Shuttle not ready for launch`;
-           launchStatus.style.color = 'red';
-
-        } else if ((validateInput(fuel)) < 10000) {
+if (fuelLevel < 10000) {
 
     list.style.visibility = 'visible';
            fuelStatus.innerHTML = `Shuttle ready for launch`;
            launchStatus.innerHTML = `fuel too low for launch`;
            launchStatus.style.color = 'red';
         }
-
-        if((fuel >= 10000) && (cargoLevel <= 10000)) { // If the fuelLevel is equal to or above 10,000 AND cargoMass is equal to or below 10,000, execute this code 
-           list.style.visibility = 'visible';
+else {fuelLevel = true;
+}
+       
+if((fuelLevel >= 10000) && (cargoLevel <= 10000)) { // If the fuelLevel is equal to or above 10,000 AND cargoMass is equal to or below 10,000, execute this code 
+    faultyItems.visibility = 'visible';
            launchStatus.innerHTML = `Shuttle is ready for launch`;
            launchStatus.style.color = 'green';
            fuelStatus.innerHTML = `Fuel level high enough for launch`;
            cargoStatus.innerHTML = `Cargo mass low enough for launch`;
         }
 
-   
+};
 
         async function myFetch() {
             let planetsReturned;

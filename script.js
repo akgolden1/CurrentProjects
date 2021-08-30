@@ -20,7 +20,7 @@ listedPlanetsResponse.then(function (result) {
     //console.log(listedPlanets);
   });
 
-let myForm = document.querySelector("form");//not sure why submitForm didn't work
+    let myForm = document.querySelector("form");//not sure why submitForm didn't work
 
     myForm.addEventListener("submit", function(event){
         event.preventDefault();
