@@ -10,7 +10,7 @@ function addDestinationInfo(planet, document) {
                  <ol>
                      <li>Name: ${planet.name} </li>
                      <li>Diameter: ${planet.diameter}  </li>
-                     <li>Star: ${planet.start}</li>
+                     <li>Star: ${planet.star}</li>
                      <li>Distance from Earth: ${planet.distance}  </li>
                      <li>Number of Moons: ${planet.moons}  </li>
                  </ol>
