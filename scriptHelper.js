@@ -47,8 +47,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
       alert("All fields are required!");
 }
 
-   else if (validateInput(pilot)==="Is a number" || validateInput(copilot)==="Is a number" || 
-   validateInput(fuelLevel)==="Not a number" || validateInput(cargoLevel)==="Not a number"){ 
+   else if (validateInput(pilot)==="This is a number" || validateInput(copilot)==="This is a number" || 
+   validateInput(fuelLevel)==="This is a not number" || validateInput(cargoLevel)==="This is a not number"){ 
    alert ("Make sure to enter valid information for each field!");
      }
 
@@ -58,27 +58,31 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   
   } 
 
-if (Number(fuelLevel) < 10000){
-    console.log ("the fuel is low");
+if ((Number(fuelLevel) < 10000)){
+    //console.log ("the fuel is low");
     faultyItems.style.visibility ="visible";
-    document.getElementById("cargoStatus").innerHTML = `Cargo fine`; 
+    //document.getElementById("cargoStatus").innerHTML = `Cargo mass is low enough for launch`; 
     document.getElementById("launchStatus").innerHTML = `Shuttle not ready for launch`;
     document.getElementById("launchStatus").style.color = 'red';
-    document.getElementById("fuelStatus").innerHTML = `fuel not enough`;
+    document.getElementById("fuelStatus").innerHTML = `Fuel level is too low for launch`;
+}
+else {
+    document.getElementById("fuelStatus").innerHTML = `Fuel level is high enough for launch`; 
 }
 
-else if(Number(cargoLevel) >= 10000){//this is working
-    
+if(Number(cargoLevel) > 10000) {
+
     faultyItems.style.visibility ="visible";
-    document.getElementById("cargoStatus").innerHTML = `Cargo is too heavy`; 
+    document.getElementById("cargoStatus").innerHTML = `Cargo mass is too high for launch`; 
     document.getElementById("launchStatus").innerHTML = `Shuttle not ready for launch`;
     document.getElementById("launchStatus").style.color = 'red';
-    document.getElementById("fuelStatus").innerHTML = `Fuel is fine`;
+   // document.getElementById("fuelStatus").innerHTML = `Fuel level is high enough for launch`;
+} else {
+    document.getElementById("cargoLevel").innerHTML = `Cargo mass is low enough for launch`
 }
 
        
-else if ((fuelLevel >= 10000) && (cargoLevel <= 10000)) { // If the fuelLevel is equal to or above 10,000 AND cargoMass is equal to or below 10,000, execute this code 
-
+if ((Number(fuelLevel) >= 10000) && (Number(cargoLevel) <= 10000)) { // If the fuelLevel is equal to or above 10,000 AND cargoMass is equal to or below 10,000, execute this code 
 
     faultyItems.style.visibility ="visible";
     document.getElementById("cargoStatus").innerHTML = `Cargo mass low enough for launch`; 
